@@ -1,0 +1,7 @@
+DAS.c
+MYMETA.*
+*.bs
+*.o
+Makefile
+blib
+pm_to_blib
