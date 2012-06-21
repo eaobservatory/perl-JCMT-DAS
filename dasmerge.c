@@ -4,30 +4,29 @@
 
 #include "dasmerge.h"
 
-void dasmerge( nchan, nsub, f_cen, f_inc, sp_in, 
-              trunc, merge, clip,
-              freq, sp_out, vel_out, numvals )
+void dasmerge(
 /*------------------------------------------------------------------------*/
 /*
 ** Despike and merge (no DC adjustment) DAS spectra
 */
-  int    nchan;          /* (in)   number of spectral channels (dim 'in') */
-  int    nsub;           /* (in)   number of subbands                     */
-  double f_cen[MAXBND];  /* (in)   observation (centre) frequency GHz     */
-  double f_inc[MAXBND];  /* (in)   frequency step MHz                     */
-  float  sp_in[MAXSPX];  /* (in)   observed spectrum                      */
-  float  trunc;          /* (in)   number of channels/overlap to truncate */
-                         /*        # = 0:     use defaults DTRUN1/2       */
-                         /*        0 < # < 1: keep # fraction of overlap  */
-                         /*        # >= 1:    drop # channels from ends   */
-  int    merge;          /* (in)   0: no merge, else merge subbands       */
-  float  clip;           /* (in)   amplitude cutoff (T<# or T>#: T=0)     */
-                         /*        = 0 : use default DCLIP                */
-  double freq[MAXSPX];   /* (out)  output frquencies     (GHz)            */
-  float  sp_out[MAXSPX]; /* (out)  merged output spectrum                 */  
-  float  vel_out[MAXSPX]; /* (out) output velocities     (km/s)           */
-  int   *numvals;        /* (out)  Size of merged spectrum                */
+               int    nchan,           /* (in)   number of spectral channels (dim 'in') */
+               int    nsub,            /* (in)   number of subbands                     */
+               double f_cen[MAXBND],   /* (in)   observation (centre) frequency GHz     */
+               double f_inc[MAXBND],   /* (in)   frequency step MHz                     */
+               float  sp_in[MAXSPX],   /* (in)   observed spectrum                      */
+               float  trunc,           /* (in)   number of channels/overlap to truncate */
+                                       /*        # = 0:     use defaults DTRUN1/2       */
+                                       /*        0 < # < 1: keep # fraction of overlap  */
+                                       /*        # >= 1:    drop # channels from ends   */
+               int    merge,           /* (in)   0: no merge, else merge subbands       */
+               float  clip,            /* (in)   amplitude cutoff (T<# or T>#: T=0)     */
+                                       /*        = 0 : use default DCLIP                */
+               double freq[MAXSPX],    /* (out)  output frquencies     (GHz)            */
+               float  sp_out[MAXSPX],  /* (out)  merged output spectrum                 */
+               float  vel_out[MAXSPX], /* (out) output velocities     (km/s)            */
+               int   *numvals          /* (out)  Size of merged spectrum                */
 /*------------------------------------------------------------------------*/
+  )
 {
   int    i, j, k, l, m, n;
   int    nf,nval, nref;
